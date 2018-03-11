@@ -1,0 +1,21 @@
+{
+  "name": "seiseki",
+  "version": "1.0.0",
+  "description": "seiseki getter",
+  "main": "src/index.js",
+  "author": "mtsue",
+  "license": "MIT",
+  "repository": "https://github.com/mtsue/seiseki.git",
+  "scripts": {
+    "start": "npx babel-node src/index.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "dotenv": "^5.0.1",
+    "puppeteer": "^1.1.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  }
+}
