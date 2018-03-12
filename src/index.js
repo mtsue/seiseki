@@ -5,6 +5,20 @@ import 'dotenv/config';
 const id = process.env.UEC_ID;
 const password = process.env.UEC_PASSWORD
 
+function getTimestamp() {
+    const d = new Date();
+    const year = d.getFullYear();
+    const month = ('0' + (d.getMonth() + 1)).slice(-2);
+    const date = ('0' + d.getDate()).slice(-2);
+    const hour = ('0' + d.getHours()).slice(-2);
+    const minute = ('0' + d.getMinutes()).slice(-2);
+    const second = ('0' + d.getSeconds()).slice(-2);
+    const ms = d.getMilliseconds();
+
+    const timestamp = `${year}${month}${date}T${hour}${minute}${second}${ms}`;
+    return timestamp;
+}
+
 puppeteer.launch().then(async browser => {
     const page = await browser.newPage();
 
@@ -45,8 +59,10 @@ puppeteer.launch().then(async browser => {
     await page.waitFor(5000);
 
     console.log('Waited page rendering.');
-    await page.screenshot({ path: 'seiseki.png', fullPage: true });
+    const filename = `seiseki_${getTimestamp()}.png`;
+    await page.screenshot({ path: filename, fullPage: true });
     console.log('Shoted page.');
+    console.log(`Output image file as ${filename}.`);
 
     await browser.close();
 });
